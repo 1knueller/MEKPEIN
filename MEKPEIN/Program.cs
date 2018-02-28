@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using OpenCvSharp;
 
 namespace MEKPEIN
 {
@@ -6,7 +8,9 @@ namespace MEKPEIN
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Mola.ImmerDerNaseNach();
+
+            //Mola.SoVüStricherln();
         }
     }
 }
