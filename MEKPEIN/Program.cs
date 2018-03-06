@@ -8,8 +8,10 @@ namespace MEKPEIN
     {
         static void Main(string[] args)
         {
-            Mola.ImmerDerNaseNach();
-
+            
+            //Mola.JakobsLieblingsScript();
+            //Mola.ImmerDerNaseNach();
+            //Mola.SuperSchnit();
             //Mola.SoVüStricherln();
         }
     }
