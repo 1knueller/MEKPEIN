@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MEKPEIN.soup;
 using OpenCvSharp;
 
 namespace MEKPEIN
@@ -8,7 +9,13 @@ namespace MEKPEIN
     {
         static void Main(string[] args)
         {
-            
+            var x = new GoogleSoup();
+            var t = x.Ting();
+            t.Wait();
+
+            //Hirni.BasicBrain.CrazyTest();
+
+
             //Mola.JakobsLieblingsScript();
             //Mola.ImmerDerNaseNach();
             //Mola.SuperSchnit();
