@@ -7,6 +7,8 @@ namespace MEKPEIN
 {
     public class Lib
     {
+        //ioen cv color = blue green red alpha
+
         public const double GoldenRatio = 1.61803398874989484820458683436;
 
         public static Point2d SplitGolden(int ab)
@@ -15,13 +17,55 @@ namespace MEKPEIN
             return new Point2d(x, ab - x);
         }
 
-        public static int KeepInRangePerChance(int num, int min, int max,int bouncyness)
+        public static int KeepInRangePerChance(int num, int min, int max, int factorOfChangeOfRange, int bouncyness)
         {
             // keeps number in range by reducing 
             // the chance of chaning into direction 
             // of border while approaching it
-            throw new NotImplementedException("KeepInRangePerChance");
+
+            throw new NotImplementedException();
+
+            var range = (decimal)(max - min);
+            var halfrange = range / 2;
+            var qrange = halfrange / 2;
+
+            if (num < max - qrange && num > min + qrange)
+            {
+                //allow change without chance
+                return 0;
+            }
+            if (num > max - qrange)
+            {
+                // change with better chance to decrease
+                return 0;
+            }
+            if (num < min + qrange)
+            {
+                // change iwht better chance to increase
+                return 0;
+            }
+
             return 0;
+        }
+
+         public static List<Point> MakeLine(int x0, int y0, int x1, int y1)
+        {
+            var line = new List<Point>();
+
+            int dx = Math.Abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
+            int dy = -Math.Abs(y1 - y0), sy = y0 < y1 ? 1 : -1;
+            int err = dx + dy, e2; /* error value e_xy */
+
+            while (true)
+            {
+                line.Add(new Point(x0, y0));
+                if (x0 == x1 && y0 == y1) break;
+                e2 = 2 * err;
+                if (e2 > dy) { err += dy; x0 += sx; } /* e_xy+e_x > 0 */
+                if (e2 < dx) { err += dx; y0 += sy; } /* e_xy+e_y < 0 */
+            }
+
+            return line;
         }
 
         /// <summary>
@@ -34,7 +78,7 @@ namespace MEKPEIN
         /// <returns></returns>
         public static Point2d ContinuePointInRect(int rx, int ry, int x, int y)
         {
-            return new Point2d(ContinuePointInRange(rx,x), ContinuePointInRange(ry,y));
+            return new Point2d(ContinuePointInRange(rx, x), ContinuePointInRange(ry, y));
         }
 
         /// <summary>
@@ -66,6 +110,9 @@ namespace MEKPEIN
 
         /// <summary>
         /// returns list of points of circle starting from bottom
+        /// 3 | 2
+        /// --+--
+        /// 1 | 0
         /// </summary>
         /// <param name="xm"></param>
         /// <param name="ym"></param>
